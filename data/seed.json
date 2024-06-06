@@ -1,0 +1,72 @@
+{
+	"store": {
+		"currencies": ["eur", "usd"]
+	},
+	"users": [
+		{
+			"email": "admin@medusa-test.com",
+			"password": "supersecret",
+			"is_admin": true,
+			"status": "active"
+		}
+	],
+	"regions": [
+		{
+			"id": "test-region-eu",
+			"name": "EU",
+			"currency_code": "eur",
+			"tax_rate": 0,
+			"payment_providers": ["manual"],
+			"fulfillment_providers": ["manual"],
+			"countries": ["gb", "de", "dk", "se", "fr", "es", "it"]
+		},
+		{
+			"id": "test-region-na",
+			"name": "NA",
+			"currency_code": "usd",
+			"tax_rate": 0,
+			"payment_providers": ["manual"],
+			"fulfillment_providers": ["manual"],
+			"countries": ["us", "ca"]
+		}
+	],
+	"shipping_options": [],
+	"categories": [
+		{
+			"id": "pcat_pants",
+			"name": "Pants",
+			"rank": 0,
+			"category_children": [],
+			"handle": "pants"
+		},
+		{
+			"id": "pcat_shirts",
+			"name": "Shirts",
+			"rank": 0,
+			"category_children": [],
+			"handle": "shirts"
+		},
+		{
+			"id": "pcat_merch",
+			"name": "Merch",
+			"rank": 0,
+			"category_children": [],
+			"handle": "merch"
+		},
+		{
+			"id": "pcat_hidden_carousel",
+			"name": "Hidden homepage carousel",
+			"rank": 0,
+			"category_children": [],
+			"handle": "hidden-homepage-carousel"
+		},
+		{
+			"id": "pcat_hidden_featured",
+			"name": "Hidden homepage featured",
+			"rank": 0,
+			"category_children": [],
+			"handle": "hidden-homepage-featured-items"
+		}
+	],
+	"products": []
+}
