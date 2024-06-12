@@ -3186,9 +3186,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@medusajs/medusa@npm:^1.20.6":
-  version: 1.20.6
-  resolution: "@medusajs/medusa@npm:1.20.6"
+"@medusajs/medusa@npm:^1.20.7":
+  version: 1.20.7
+  resolution: "@medusajs/medusa@npm:1.20.7"
   dependencies:
     "@medusajs/core-flows": "npm:^0.0.9"
     "@medusajs/link-modules": "npm:^0.2.11"
@@ -3196,7 +3196,7 @@ __metadata:
     "@medusajs/modules-sdk": "npm:^1.12.11"
     "@medusajs/orchestration": "npm:^0.5.7"
     "@medusajs/utils": "npm:^1.11.9"
-    "@medusajs/workflows-sdk": "npm:^0.1.6"
+    "@medusajs/workflows-sdk": "npm:^0.1.7"
     awilix: "npm:^8.0.0"
     body-parser: "npm:^1.19.0"
     boxen: "npm:^5.0.1"
@@ -3246,7 +3246,7 @@ __metadata:
     typeorm: ^0.3.16
   bin:
     medusa: cli.js
-  checksum: 10c0/7ffdab14983412138ea8eee945224a7b8a8c95b0b0162a4c6b50f4686f1a277a5eef5d977b1df7f7e191324bf002988320c980742bdc601437d7a752a95ca9ff
+  checksum: 10c0/e1856a5ae0accba93223a2da1ed3168912f71fa0f3cb00423a41586f57c12f727a4b9bbd471185e8ab78e9fdc022b8352c26867db1e5bdf0a6efa8e2edbbd723
   languageName: node
   linkType: hard
 
@@ -3405,6 +3405,19 @@ __metadata:
     awilix: "npm:^8.0.1"
     ulid: "npm:^2.3.0"
   checksum: 10c0/77ac919eee6502f2404974ab9d41cd13fcb29118638fafae3c318e251a8f848de76688b20698bc81141350d4750d63966efb0861f667f1be90334a48b69c9ebd
+  languageName: node
+  linkType: hard
+
+"@medusajs/workflows-sdk@npm:^0.1.7":
+  version: 0.1.7
+  resolution: "@medusajs/workflows-sdk@npm:0.1.7"
+  dependencies:
+    "@medusajs/modules-sdk": "npm:^1.12.11"
+    "@medusajs/orchestration": "npm:^0.5.7"
+    "@medusajs/utils": "npm:^1.11.9"
+    awilix: "npm:^8.0.1"
+    ulid: "npm:^2.3.0"
+  checksum: 10c0/bdfeec47f1dc3a6f29a63642e00f85a8e7aaf062b61cbfc6ff307b024956d4020c6620f439440b44e55b778ee8c97bea12baf1532236f09624cec3f17995e1d4
   languageName: node
   linkType: hard
 
@@ -14483,7 +14496,7 @@ __metadata:
     "@medusajs/event-bus-redis": "npm:latest"
     "@medusajs/file-local": "npm:latest"
     "@medusajs/icons": "npm:^1.2.1"
-    "@medusajs/medusa": "npm:^1.20.6"
+    "@medusajs/medusa": "npm:^1.20.7"
     "@medusajs/medusa-cli": "npm:latest"
     "@medusajs/ui": "npm:^3.0.0"
     "@rigby-software-house/mercurjs-vendor": "npm:^0.0.4"
