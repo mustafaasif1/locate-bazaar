@@ -6986,6 +6986,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.51.3":
+  version: 5.51.3
+  resolution: "@tanstack/query-core@npm:5.51.3"
+  checksum: 10c0/cf29afa0fb14a99bd64e3605577a0b98694eb26d444bab255e8faf4ff113dbea51b311c8ec3a28dabd2728fbdba305c6c1095823233dd10dd042910f30c58365
+  languageName: node
+  linkType: hard
+
 "@tanstack/react-query@npm:4.22.0":
   version: 4.22.0
   resolution: "@tanstack/react-query@npm:4.22.0"
@@ -7002,6 +7009,17 @@ __metadata:
     react-native:
       optional: true
   checksum: 10c0/aacb071935c20ec695adfce7594649b6a7683640b82b232727f1b000bb871b6e99bb98bf47b9617eb76829d6b5822a6c98d3cefb1ede90a69cc52c2c79488d14
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:5.51.3":
+  version: 5.51.3
+  resolution: "@tanstack/react-query@npm:5.51.3"
+  dependencies:
+    "@tanstack/query-core": "npm:5.51.3"
+  peerDependencies:
+    react: ^18.0.0
+  checksum: 10c0/f500775257491e080caefe793b03605da3f6cf003f219527eae5bd7fb7164aff95091f36abc83e98eeee1aaf202a63bcb3f89757a49e72e2bb83c11ebefc7569
   languageName: node
   linkType: hard
 
@@ -14488,7 +14506,7 @@ __metadata:
     "@medusajs/ui": "npm:^3.0.0"
     "@rigby-software-house/mercurjs-vendor": "npm:^0.0.4"
     "@stdlib/number-float64-base-normalize": "npm:0.0.8"
-    "@tanstack/react-query": "npm:4.22.0"
+    "@tanstack/react-query": "npm:5.51.3"
     "@types/express": "npm:^4.17.13"
     "@types/jest": "npm:^27.4.0"
     "@types/mime": "npm:1.3.5"
