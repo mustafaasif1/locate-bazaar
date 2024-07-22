@@ -76,14 +76,22 @@ const projectConfig = {
 	store_cors: STORE_CORS,
 	database_url: DATABASE_URL,
 	admin_cors: ADMIN_CORS,
-	// Uncomment the following lines to enable REDIS
-	redis_url: REDIS_URL,
-	worker_mode: process.env.MEDUSA_WORKER_MODE,
 };
 
+// Conditionally add properties based on NODE_ENV
+if (process.env.NODE_ENV === 'production') {
+	projectConfig.redis_url = REDIS_URL;
+	projectConfig.worker_mode = process.env.MEDUSA_WORKER_MODE;
+}
+
 /** @type {import('@medusajs/medusa').ConfigModule} */
-module.exports = {
+const config = {
 	projectConfig,
 	plugins,
-	modules,
 };
+
+if (process.env.NODE_ENV === 'production') {
+	config.modules = modules;
+}
+
+module.exports = config;
