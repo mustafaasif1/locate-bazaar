@@ -1,5 +1,5 @@
 import { Entity, Column, ManyToOne, JoinColumn,BeforeInsert, PrimaryColumn } from "typeorm";
-import { BaseEntity } from "@medusajs/medusa";
+import { BaseEntity, generateEntityId } from "@medusajs/medusa";
 import { Product } from "./product";
 import { User } from "./user";
 
@@ -37,8 +37,8 @@ export class Review extends BaseEntity {
   @JoinColumn({ name: "user_id" })
   user: User;
 
-  // @BeforeInsert()
-  // private beforeInsert(): void {
-  //   this.id = generateEntityId(this.id, "review")
-  // }
+  @BeforeInsert()
+  private beforeInsert(): void {
+    this.id = generateEntityId(this.id, "review")
+  }
 }

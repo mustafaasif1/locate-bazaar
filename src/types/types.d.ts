@@ -33,13 +33,7 @@ declare module '@medusajs/medusa/dist/models/order' {
 		children: Order[] | null;
 	}
 }
-declare module '@medusajs/medusa/dist/models/order' {
-	interface Review {
-		title:string,
-		description:string,
-		rating:number,
-	}
-}
+
 declare module '@medusajs/medusa/dist/models/shipping-option' {
 	interface ShippingOption {
 		store: Store;

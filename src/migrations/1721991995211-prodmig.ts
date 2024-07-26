@@ -4,15 +4,15 @@ export class Prodmig1721991995211 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            CREATE TABLE "review" (
-                "id" character varying NOT NULL,
-                "title" character varying NOT NULL,
-                "description" text,
-                "rating" integer NOT NULL,
-                "product_id" character varying NOT NULL,
-                "user_id" character varying NOT NULL,
-                "created_at" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
-                "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
+            CREATE TABLE review (
+                id character varying NOT NULL,
+                title character varying NOT NULL,
+                description text,
+                rating integer NOT NULL,
+                product_id character varying NOT NULL,
+                user_id character varying NOT NULL,
+                created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
+                updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
                 CONSTRAINT "PK_2e4299a343a81574217255c00ca" PRIMARY KEY ("id")
             )
         `);
@@ -23,17 +23,17 @@ export class Prodmig1721991995211 implements MigrationInterface {
 
         // Add average_rating column to the product table
         await queryRunner.query(`
-            ALTER TABLE "product" ADD "average_rating" decimal(3,1) NOT NULL DEFAULT '0'
+            ALTER TABLE product ADD "average_rating" decimal(3,1) NOT NULL DEFAULT '0'
         `);
 
         // Add foreign key constraints
         await queryRunner.query(`
-            ALTER TABLE "review" ADD CONSTRAINT "FK_2a11d3c0ea1e6dd5e722f3bc7c5" 
+            ALTER TABLE review ADD CONSTRAINT "FK_2a11d3c0ea1e6dd5e722f3bc7c5" 
             FOREIGN KEY ("product_id") REFERENCES "product"("id") ON DELETE NO ACTION ON UPDATE NO ACTION
         `);
 
         await queryRunner.query(`
-            ALTER TABLE "review" ADD CONSTRAINT "FK_1337f93918c70837d3cea105d39" 
+            ALTER TABLE review ADD CONSTRAINT "FK_1337f93918c70837d3cea105d39" 
             FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE NO ACTION ON UPDATE NO ACTION
         `);
     }
@@ -47,17 +47,15 @@ export class Prodmig1721991995211 implements MigrationInterface {
             ALTER TABLE "review" DROP CONSTRAINT "FK_2a11d3c0ea1e6dd5e722f3bc7c5"
         `);
 
-        // Remove index on product_id in the review table
         await queryRunner.query(`
             DROP INDEX "IDX_review_product_id"
         `);
 
-        // Remove average_rating column from the product table
         await queryRunner.query(`
             ALTER TABLE "product" DROP COLUMN "average_rating"
         `);
 
-        // Drop the review table
+        
         await queryRunner.query(`
             DROP TABLE "review"
         `);
