@@ -1,9 +1,9 @@
-import { JoinTable, Entity, JoinColumn, ManyToMany, ManyToOne, Index, Column ,OneToMany} from 'typeorm';
+import { JoinTable, Entity, JoinColumn, ManyToMany, ManyToOne, Index, Column ,OneToMany, AfterInsert, AfterUpdate} from 'typeorm';
 import { Store } from './store';
 import { Product as MedusaProduct } from '@medusajs/medusa';
 import { ShippingOption } from './shipping-option';
 import { Review } from "./review";
-
+import { ReviewRepository } from 'src/repositories/review';
 
 @Entity()
 export class Product extends MedusaProduct {
@@ -28,10 +28,10 @@ export class Product extends MedusaProduct {
 		},
 	})
 	shipping_options: ShippingOption[];
-	
-	@Column({ type: "decimal", precision: 3, scale: 2, nullable: true })
-	average_rating: number;
-  
+
 	@OneToMany(() => Review, review => review.product)
 	reviews: Review[];
+
+	@Column({ type: "decimal", precision: 3, scale: 1, default: 0 })
+    average_rating: number;
 }

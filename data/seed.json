@@ -68,5 +68,13 @@
 			"handle": "hidden-homepage-featured-items"
 		}
 	],
-	"products": []
+	"products": [
+		{
+			"id": "1",
+			"title": "test product",
+			"subtitle": "test subtitle",
+			"description": "test description"
+		}
+		
+	]
 }

@@ -4,13 +4,17 @@ import {
   TransactionBaseService, 
   FindConfig,
   Selector,
-  MedusaContainer,
+  MedusaContainer as BaseMedusaContainer,
 } from "@medusajs/medusa";
 import { MedusaError } from "@medusajs/utils";
-
 import { Review } from "../models/review";
 import { ReviewRepository } from "../repositories/review";
 import { User} from "@medusajs/medusa";
+import ProductService from './product';
+
+interface MedusaContainer extends BaseMedusaContainer {
+  productService: ProductService;
+}
 
 type CreateReviewInput = {
   title: string;
@@ -27,22 +31,27 @@ class ReviewService extends TransactionBaseService {
 
   protected readonly reviewRepository_: typeof ReviewRepository;
   protected readonly loggedInUser_: User | null;
+  protected readonly productService_: ProductService;
+
+
 
   constructor(container:MedusaContainer) {
     super(container);
-    
-    // try {
-    //   this.loggedInUser_ = container.loggedInUser;
-    // } catch (e) {
-    //   // avoid errors when backend first runs
-    // }
+    this.productService_ = container.productService;
+
   }
 
   async create(reviewObject: CreateReviewInput): Promise<Review> {
     return await this.atomicPhase_(async (transactionManager) => {
       const reviewRepo = transactionManager.getRepository(Review)
       const review = reviewRepo.create(reviewObject);
-      return await reviewRepo.save(review);
+      const savedReview = await reviewRepo.save(review);
+      
+      if (reviewObject.product_id) {
+        await this.productService_.updateAverageRating(reviewObject.product_id);
+      }
+
+      return savedReview;      
     });
   }
 
@@ -66,12 +75,14 @@ async list(selector: Selector<Review>, config: FindConfig<Review> = {}): Promise
     };
     return await reviewRepo.find(query);
   }
+
   async listAndCount(productId: string): Promise<[Review[], number]> {
     const reviewRepo = this.manager_.getRepository(Review);
     return await reviewRepo.findAndCount({
       where: { product_id: productId },
     });
   }
+
   async update(reviewId: string, update: UpdateReviewInput): Promise<Review> {
     return await this.atomicPhase_(async (manager) => {
         const reviewRepo = this.manager_.getRepository(Review)
@@ -85,7 +96,13 @@ async list(selector: Selector<Review>, config: FindConfig<Review> = {}): Promise
         }
       }
 
-      return await reviewRepo.save(review);
+       const savedReview = await reviewRepo.save(review);
+
+      if (review.product_id) {
+        await this.productService_.updateAverageRating(review.product_id);
+      }
+
+      return savedReview;
     });
   }
 
@@ -104,6 +121,7 @@ async list(selector: Selector<Review>, config: FindConfig<Review> = {}): Promise
       where: { product_id: productId },
     });
   }
+  
 }
 
 export default ReviewService;

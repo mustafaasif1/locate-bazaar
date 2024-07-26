@@ -1,5 +1,5 @@
 import { Lifetime } from 'awilix';
-import { ProductService as MedusaProductService, Product, User } from '@medusajs/medusa';
+import {  ProductService as MedusaProductService, Product, User } from '@medusajs/medusa';
 import { MedusaError } from '@medusajs/utils';
 import {
 	CreateProductInput as MedusaCreateProductInput,
@@ -9,6 +9,9 @@ import {
 } from '@medusajs/medusa/dist/types/product';
 import StoreService from './store';
 import ShippingOptionRepository from '../repositories/shipping-option';
+import { Review } from 'src/models/review';
+import { EntityManager } from 'typeorm';
+
 
 type ProductSelector = {
 	store_id?: string;
@@ -34,7 +37,7 @@ class ProductService extends MedusaProductService {
 
 		this.storeService_ = container.storeService;
 		this.shippingOptionRepository_ = container.shippingOptionRepository;
-
+		
 		try {
 			this.loggedInUser_ = container.loggedInUser;
 		} catch (e) {
@@ -95,6 +98,30 @@ class ProductService extends MedusaProductService {
 
 		return await super.update(productId, update);
 	}
+     
+
+	async updateAverageRating(productId: string): Promise<void> {
+        const manager: EntityManager = this.manager_;
+        const productRepo = manager.getRepository(Product);
+        const reviewRepo = manager.getRepository(Review);
+
+        const product = await productRepo.findOne({ where: { id: productId } });
+        if (!product) {
+            throw new MedusaError(MedusaError.Types.NOT_FOUND, 'Product not found');
+        }
+
+        const reviews = await reviewRepo.find({ where: { product_id: productId } });
+
+        if (reviews.length > 0) {
+            const sum = reviews.reduce((acc, review) => acc + review.rating, 0);
+            product.average_rating = parseFloat((sum / reviews.length).toFixed(1));
+        } else {
+            product.average_rating = 0;
+        }
+
+        await productRepo.save(product);
+		//this implementation might need to be updated in the future
+    }
 }
 
 export default ProductService;

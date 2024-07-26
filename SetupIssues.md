@@ -7,7 +7,7 @@ title: "[]{#_ym77chxxmw2 .anchor}Mercur.js Project-Backend Setup guide
 
 ### "npx mercurjs marketplace"
 
-If the project is already setup, then after cloning "npm install" in the
+If the project is already setup, then after cloning "yarn install" in the
 root directory, then follow these steps:
 
 ## API Configuration
@@ -45,7 +45,7 @@ root directory, then follow these steps:
 ### Encountered Issues: 
 
 ![](/image1.jpg){width="6.5in"
-height="0.3194444444444444in"}
+height="0.5194444444444444in"}
 
 Solution: Make sure you have executed the "initial setup" steps, make
 sure you have rediss modules and rediss URL commented out

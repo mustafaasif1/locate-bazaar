@@ -10,6 +10,12 @@ import { IsString, IsOptional, IsInt, Min, Max, IsUUID } from 'class-validator';
 import cors from "cors"
 import bodyParser from 'body-parser';
 
+// import {projectConfig} from "./../../../../../../medusa-config";
+// const storeCorsOptions = {
+//   origin: projectConfig.store_cors.split(","),
+//   credentials: true,
+// }  
+
 
 class CreateReviewInput {
   @IsString()
